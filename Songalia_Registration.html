@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunsun - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f3f4f6;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #111827;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            background: #111827;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #374151;
+        }
+
+        .secondary-btn {
+            background: #e5e7eb;
+            color: #111827;
+            margin-top: 10px;
+        }
+
+        .secondary-btn:hover {
+            background: #d1d5db;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .social-btn {
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .social-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .switch-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .switch-text a {
+            color: #2563eb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            font-size: 35px;
+            color: #777;
+        }
+
+        .profile-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #2563eb;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+
+            <!-- ================= LOGIN ================= -->
+
+            <div id="loginPage">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Log in to continue to Sunsun</p>
+                <form id="loginForm">
+                    <div class="input-group"> <label>Username</label> <input type="text" id="loginUsername"
+                            placeholder="Enter your username" required> </div>
+                    <div class="input-group"> <label>Password</label> <input type="password" id="loginPassword"
+                            placeholder="Enter your password" required> </div> <button type="submit"
+                        class="primary-btn"> Login </button>
+                </form>
+                <div class="divider"> OR </div> <button class="social-btn" onclick="continueWithEmail()"> ✉️ Continue
+                    with Email </button> <button class="social-btn" onclick="continueWithFacebook()"> f&nbsp;&nbsp;
+                    Continue with Facebook </button> <button class="social-btn" onclick="continueWithPhone()"> 📱
+                    Continue with Phone Number </button>
+                <p class="switch-text"> Don't have an account? <a onclick="showRegisterStart()">Register</a> </p>
+            </div>
+
+            <div id="registerStart" class="hidden">
+
+                <h2>Create an Account</h2>
+
+                <p class="subtitle">
+                    Join Sunsun today
+                </p>
+
+                <button class="primary-btn" onclick="showAccountDetails()">
+                    Proceed to Create Account
+                </button>
+
+                <button class="secondary-btn" onclick="showLogin()">
+                    Back to Login
+                </button>
+
+            </div>
+
+            <div id="accountDetails" class="hidden">
+
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Enter your account information
+                </p>
+
+                <form id="accountForm">
+
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="username" placeholder="Choose a username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="registerPassword" placeholder="Create a password" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Birthday</label>
+                        <input type="date" id="birthday" required>
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+                        Continue
+                    </button>
+
+                </form>
+
+                <span class="back-link" onclick="showRegisterStart()">
+                    ← Back
+                </span>
+
+            </div>
+
+            <div id="profileDetails" class="hidden">
+
+                <h2>Set Up Your Profile</h2>
+
+                <p class="subtitle">
+                    Add some details about yourself
+                </p>
+
+                <div class="profile-preview" id="profilePreview">
+                    👤
+                </div>
+
+                <div class="input-group">
+
+                    <label>Profile Photo</label>
+
+                    <input type="file" id="profilePhoto" accept="image/*">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Nickname</label>
+
+                    <input type="text" id="nickname" placeholder="Enter your nickname" required>
+
+                </div>
+
+                <button class="primary-btn" onclick="submitRegistration()">
+                    Submit
+                </button>
+
+                <span class="back-link" onclick="showAccountDetails()">
+                    ← Back
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+        function hideAllPages() {
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("registerStart").classList.add("hidden");
+            document.getElementById("accountDetails").classList.add("hidden");
+            document.getElementById("profileDetails").classList.add("hidden");
+        }
+
+        function showLogin() {
+            hideAllPages();
+            document.getElementById("loginPage").classList.remove("hidden");
+        }
+
+        function showRegisterStart() {
+            hideAllPages();
+            document.getElementById("registerStart").classList.remove("hidden");
+        }
+
+        function showAccountDetails() {
+            hideAllPages();
+            document.getElementById("accountDetails").classList.remove("hidden");
+        }
+
+        function showProfileDetails() {
+            hideAllPages();
+            document.getElementById("profileDetails").classList.remove("hidden");
+        }
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                alert("Login submitted! Welcome to Sunsun");
+
+            });
+
+        document
+            .getElementById("accountForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                showProfileDetails();
+
+            });
+
+        document
+            .getElementById("profilePhoto")
+            .addEventListener("change", function (event) {
+
+                const file = event.target.files[0];
+
+                if (file) {
+
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        document.getElementById("profilePreview").innerHTML =
+                            `<img src="${e.target.result}" alt="Profile Photo">`;
+
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+
+            });
+
+        function submitRegistration() {
+
+            const username =
+                document.getElementById("username").value;
+
+            const nickname =
+                document.getElementById("nickname").value;
+
+            const photo =
+                document.getElementById("profilePhoto").files[0];
+
+            if (!nickname) {
+
+                alert("Please enter your nickname.");
+                return;
+
+            }
+
+            alert(
+                "Account created successfully!\n\n" +
+                "Welcome to Sunsun, " +
+                (nickname || username) +
+                "!"
+            );
+
+            // Return to Login
+            showLogin();
+
+        }
+
+        function continueWithEmail() {
+
+            alert("Continue with Email selected.");
+
+        }
+
+        function continueWithFacebook() {
+
+            alert("Continue with Facebook selected.");
+
+        }
+
+        function continueWithPhone() {
+
+            alert("Continue with Phone Number selected.");
+
+        }
+
+    </script>
+
+</body>
+</html>
