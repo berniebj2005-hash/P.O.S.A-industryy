@@ -1,0 +1,32 @@
+<?php
+// PHP logic (variables, database queries, functions)
+$username = "Alex";
+$currentHour = date("H");
+
+if ($currentHour < 12) {
+    $greeting = "Good Morning";
+} elseif ($currentHour < 18) {
+    $greeting = "Good Afternoon";
+} else {
+    $greeting = "Good Evening";
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP & CSS Connection</title>
+    <!-- Connect External CSS here -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="welcome-card">
+        <h1><?php echo $greeting . ", " . $username . "!"; ?></h1>
+        <p>This page connects PHP logic with HTML markup and external CSS styling.</p>
+    </div>
+
+</body>
+</html>
